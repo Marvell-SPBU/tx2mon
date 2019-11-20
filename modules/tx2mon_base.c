@@ -12,6 +12,8 @@
 #include <linux/platform_device.h>
 #include <linux/slab.h>
 
+#include "tx2errata_switch.h"
+
 #define NODE0_MC_BASE_ADDR	0x80008000U
 #define NODE1_MC_BASE_ADDR	0x80009000U
 #define MC_MAP_SIZE		1024
@@ -137,6 +139,11 @@ static int __init socmon_init(void)
 		if (err)
 			goto failout;
 	}
+
+	err = tx2errata_init(&tx2mon_data->pdev->dev.kobj);
+	if (err)
+		goto failout;
+
 	return 0;
 
 failout:
@@ -146,6 +153,7 @@ failout:
 
 static void __exit socmon_exit(void)
 {
+	tx2errata_cleanup(&tx2mon_data->pdev->dev.kobj);
 	tx2mon_cleanup(tx2mon_data);
 }
 
