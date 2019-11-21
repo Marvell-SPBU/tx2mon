@@ -3,7 +3,8 @@ tx2mon
 
 The tx2mon package contains:
  - a kernel module (tx2mon_kmod) which provides access to system
-   specific data and config areas using sysfs
+   specific data and config areas using sysfs, also, it allows to switch on/off
+   ThunderX2 errata workarounds (see modules/README)
  - an application (tx2mon) which uses this sysfs interface to monitor
    sensors.
 

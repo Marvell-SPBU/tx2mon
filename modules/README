@@ -1,0 +1,19 @@
+tx2mon_kmod - monitor ThunderX2 module
+
+The kernel module maps the operating region to sysfs files
+that are decoded by 'tx2mon' userspace application.
+See tx2mon/README for information on how to use the application.
+
+Moreover, tx2mon_kmod module exposes errata workaround list that can be
+turn on/off in runtime.
+
+To see list of available errata workaround:
+$ ls /sys/bus/platform/devices/tx2mon/tx2_erratas/
+errata_219
+
+To check whether specific workaround is ON/OFF:
+$ cat /sys/bus/platform/devices/tx2mon/tx2_erratas/errata_219
+ThunderX2 Errata 219 ON
+
+To turn OFF/ON specific workaround:
+$ echo {0|1} > /sys/bus/platform/devices/tx2mon/tx2_erratas/errata_219
